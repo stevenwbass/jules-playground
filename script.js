@@ -1,4 +1,8 @@
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import * as THREE from 'https://esm.sh/three';
+import { FontLoader } from 'https://esm.sh/three/examples/jsm/loaders/FontLoader.js';
+import { GLTFLoader } from 'https://esm.sh/three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'https://esm.sh/three/examples/jsm/controls/OrbitControls.js';
+
 // Ensure script runs after HTML is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
@@ -51,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- three.js Setup ---
     let scene, camera, renderer, controls;
-    const loader = new THREE.GLTFLoader();
+    const loader = new GLTFLoader();
     const fontLoader = new FontLoader();
 
     function initThreeJS() {
@@ -75,17 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
         directionalLight.castShadow = true; // If we add shadows later
         scene.add(directionalLight);
 
-        if (typeof THREE.OrbitControls === 'function') {
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
-            controls.minDistance = 1;
-            controls.maxDistance = 20;
-            controls.target.set(0, 1, 0); // Adjust target to focus on typical model height
-            controls.update();
-        } else {
-            console.warn("THREE.OrbitControls not found.");
-        }
+        // OrbitControls are imported, so we can instantiate them directly.
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.minDistance = 1;
+        controls.maxDistance = 20;
+        controls.target.set(0, 1, 0); // Adjust target to focus on typical model height
+        controls.update();
 
         // Load the default three.js font (for potential future use with TextGeometry)
         fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/fonts/helvetiker_regular.typeface.json', function (font) {
