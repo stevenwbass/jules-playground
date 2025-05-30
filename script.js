@@ -1,3 +1,4 @@
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 // Ensure script runs after HTML is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- three.js Setup ---
     let scene, camera, renderer, controls;
     const loader = new THREE.GLTFLoader();
-    const fontLoader = new THREE.FontLoader();
+    const fontLoader = new FontLoader();
 
     function initThreeJS() {
         scene = new THREE.Scene();
