@@ -12,9 +12,17 @@ This project demonstrates rendering user-input text onto a 3D model of a tumbler
 ## How to Run
 
 1.  Clone or download this repository.
-2.  Open the `index.html` file in a modern web browser that supports WebGL.
-    -   Ensure you have an internet connection for the three.js library and 3D model/font CDNs to load.
-    -   Some browsers might restrict loading local files (like 3D models or fonts if they were local) directly from the filesystem due to security policies. In such cases, serving the files through a local web server (e.g., using Python's `http.server`, Node.js `serve`, or a VS Code Live Server extension) is recommended. However, as this project currently uses CDN for all assets, opening `index.html` directly should work in most cases.
+2.  **Serve the project via a local HTTP server.** Due to the use of ES modules (`import` statements in JavaScript), `index.html` cannot be opened directly from the file system.
+    -   Navigate to the project directory in your terminal.
+    -   **Using Python:**
+        -   For Python 3: `python -m http.server`
+        -   For Python 2: `python -m SimpleHTTPServer`
+        -   Then open `http://localhost:8000` (or the port indicated by the server) in your browser.
+    -   **Using Node.js:**
+        -   If you have `npx` (usually comes with npm 5.2+): `npx http-server .`
+        -   Alternatively, install `http-server` globally: `npm install -g http-server`, then run: `http-server .`
+        -   Then open `http://localhost:8080` (or the port indicated by the server) in your browser.
+3.  Ensure you have an internet connection if assets are still loaded from CDNs (though the primary reason for the server is for ES module compatibility).
 
 ## Technical Details
 
